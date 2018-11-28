@@ -1,0 +1,26 @@
+{
+  "name": "test-front-junior",
+  "version": "0.0.0",
+  "description": "standalone SPA for testing candidates skills",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuccaSA/test.front.junior.git"
+  },
+  "keywords": [
+    "lucca",
+    "test",
+    "junior",
+    "angular",
+    "front"
+  ],
+  "author": "lucienbertin <lbertin@lucca.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuccaSA/test.front.junior/issues"
+  },
+  "homepage": "https://github.com/LuccaSA/test.front.junior#readme"
+}
