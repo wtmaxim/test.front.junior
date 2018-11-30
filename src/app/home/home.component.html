@@ -1,1 +1,10 @@
-home component
+<main class="container">
+	<section>
+		<div class="textfield mod-search mod-block">
+			<input class="textfield-input" placeholder="Cherchez une destination" [formControl]="clueCtrl">
+		</div>
+	</section>
+	<section>
+		{{ destinations$ | async | json }}
+	</section>
+</main>
