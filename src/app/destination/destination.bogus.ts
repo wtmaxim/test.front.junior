@@ -7,6 +7,11 @@ export const paris = {
 	id: 75, name: 'Paris', description: `Quisque vehicula velit id nulla varius porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In aliquet quam vitae sapien vestibulum, eu tincidunt tortor ultricies. Nunc dictum quam at mauris fringilla, eu iaculis ligula commodo. Ut pellentesque euismod nisl eget cursus. Ut dui lorem, ornare id consectetur in, tincidunt et sem. Mauris eget enim non felis fringilla egestas id sed enim. Pellentesque id luctus ante. Nam lobortis pellentesque elementum. Nulla at tellus non elit posuere convallis. Donec ut lorem gravida, auctor odio sit amet, rutrum sem. Aliquam eros ante, facilisis nec mattis eget, egestas nec nisi. Aenean vestibulum dapibus sem vel scelerisque. Praesent convallis tortor eleifend ante gravida porttitor. Aenean tincidunt neque mauris, blandit sollicitudin metus volutpat vel.`,
 } as IDestination;
 
+export const all = [marseille, paris];
+export const dictionary = all.reduce((dic, dest) => {
+	dic[dest.id] = dest;
+	return dic;
+}, {});
 /*
 Nulla consequat risus ligula, fermentum laoreet justo feugiat vitae. Nam tempus et risus id sodales. Nam ut malesuada magna. Duis ultrices nibh arcu. In ultricies consectetur mattis. Nulla pellentesque tincidunt tristique. Morbi laoreet a libero vel accumsan. In eu placerat orci. Morbi pellentesque eleifend leo, nec pellentesque velit. Suspendisse bibendum augue vel viverra fringilla.
 

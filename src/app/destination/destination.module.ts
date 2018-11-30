@@ -3,6 +3,7 @@ import { DestinationService } from './destination.service';
 import { DestinationRoutingModule } from './destination.router';
 import { DestinationComponent } from './destination.component';
 import { DestinationThumbnailComponent } from './components';
+import { DestinationResolver } from './destination.resolver';
 
 @NgModule({
 	imports: [
@@ -10,6 +11,7 @@ import { DestinationThumbnailComponent } from './components';
 	],
 	providers: [
 		DestinationService,
+		DestinationResolver,
 	],
 	declarations: [
 		DestinationComponent,
