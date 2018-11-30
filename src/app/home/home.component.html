@@ -5,6 +5,6 @@
 		</div>
 	</section>
 	<section>
-		{{ destinations$ | async | json }}
+		<app-destination-thumbnail *ngFor="let destination of destinations$ | async" [destination]="destination"></app-destination-thumbnail>
 	</section>
 </main>
