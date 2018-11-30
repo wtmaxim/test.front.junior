@@ -4,7 +4,7 @@ import { IDestination } from '../../destination.model';
 @Component({
 	selector: 'app-destination-thumbnail',
 	templateUrl: './destination-thumbnail.component.html',
-	styleUrls: []
+	styleUrls: ['./destination-thumbnail.component.scss']
 })
 export class DestinationThumbnailComponent {
 	@Input() destination: IDestination;
