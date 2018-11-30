@@ -1,10 +1,45 @@
-<main class="main">
-		<section class="main-content">
-			<section class="section">
-				<h1>{{destination.name}}</h1>
-			</section>
-			<section class="section">
-				<p>{{destination.description}}</p>
-			</section>
-		</section>
-	</main>
+<main class="main-content" [style.backgroundImage]="'url(assets/img/paris/bg.jpg)'">
+	<div class="container">
+		<div class="grid">
+				<section class="grid-md7 presentation-section">
+						<nav class="breadcrumb">
+							<a href="#" class="breadcrumb-item">Destinations</a>
+							<span class="breadcrumb-item is-active">Paris</span>
+						</nav>
+						<h1>{{destination.name}}</h1>
+						<div class="card">
+							<div class="card-content">
+								{{destination.description}}
+							</div>
+						</div>
+					</section>
+					<section class="grid-md3 grid-mdOffset1 infos-section">
+						<div class="infos">
+							<ul>
+								<li><b>Pays :</b> France</li>
+								<li><b>Prix :</b> 1000€ - 3000€</li>
+								<li><b>Note :</b>
+									<i class="lucca-icon icon-star"></i>
+									<i class="lucca-icon icon-star"></i>
+									<i class="lucca-icon icon-star"></i>
+									<i class="lucca-icon icon-star"></i>
+									<i class="lucca-icon icon-unstared"></i></li>
+								<li>
+									<ul>
+										<b>Tags</b><br>
+										<li class="tag">France</li>
+										<li class="tag">Historique</li>
+										<li class="tag">Festif</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="gallery">
+							<img src="assets/img/paris/1.jpg" alt="">
+							<img src="assets/img/paris/2.jpg" alt="">
+							<img src="assets/img/paris/3.jpg" alt="">
+						</div>
+					</section>
+		</div>
+	</div>
+</main>

@@ -1,0 +1,85 @@
+.main-content {
+	position: relative;
+	height: 100vh;
+	background-image: url('assets/img/paris/bg.jpg');
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+	&::before {
+		display: block;
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: rgba(0, 0, 0, .5);
+	}
+}
+.container {
+	margin-top: 0;
+	padding-bottom: 0;
+	position: relative;
+	z-index: 1;
+	* {
+		color : #FFF;
+	}
+	.grid {
+		align-items: center;
+	}
+}
+
+.presentation-section {
+	position: relative;
+	z-index: 1;
+	.breadcrumb {
+		margin-left: -12px;
+	}
+	.card-content {
+		color: #666;
+	}
+}
+
+.infos-section {
+	background-color: rgba(111, 205, 210, 0.616);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	.infos {
+		padding: 1rem;
+		ul, li {
+			list-style: none;
+		}
+		ul {
+			padding: 0;
+		}
+
+		.tag {
+			background-color: darken(#6FCDD2, 20%);
+			color: white;
+			font-size: 14px;
+			padding: .1em .75em;
+			border-radius: 5px;
+			display: inline-block;
+			margin-top: .25em;
+
+			+ .tag {
+				margin-left: .25em;
+			}
+		}
+	}
+
+	.gallery {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-end;
+		align-items: center;
+		transform: translateX(50%);
+		img {
+			height: 200px;
+			margin-left: 1rem;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+		}
+	}
+}
