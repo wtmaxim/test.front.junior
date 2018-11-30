@@ -9,7 +9,7 @@ export class DestinationResolver implements Resolve<IDestination> {
 		protected destinationService: DestinationService,
 	) {}
 	resolve(route: ActivatedRouteSnapshot) {
-		const destinationId = parseInt(route.paramMap.get('destinationId'), 10);
-		return this.destinationService.getDestination(destinationId);
+		const name = route.paramMap.get('name');
+		return this.destinationService.getDestinationByName(name);
 	}
 }

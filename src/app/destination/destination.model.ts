@@ -1,5 +1,8 @@
 export interface IDestination {
-	id: number;
 	name: string;
 	description: string;
+	country: string;
+	priceRange: string;
+	rating: number;
+	tags: string[];
 }
