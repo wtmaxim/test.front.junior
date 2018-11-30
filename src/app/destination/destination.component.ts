@@ -5,7 +5,7 @@ import { IDestination } from './destination.model';
 @Component({
 	selector: 'app-destination',
 	templateUrl: './destination.component.html',
-	styleUrls: []
+	styleUrls: ['./destination.component.scss']
 })
 export class DestinationComponent implements OnInit {
 	destination: IDestination;
