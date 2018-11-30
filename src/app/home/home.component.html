@@ -4,7 +4,9 @@
 			<input class="textfield-input" placeholder="Cherchez une destination" [formControl]="clueCtrl">
 		</div>
 	</section>
-	<section>
-		<app-destination-thumbnail *ngFor="let destination of destinations$ | async" [destination]="destination"></app-destination-thumbnail>
+	<section class="grid">
+		<div class="grid-md4" *ngFor="let destination of destinations$ | async">
+			<app-destination-thumbnail [destination]="destination"></app-destination-thumbnail>
+		</div>
 	</section>
 </main>
