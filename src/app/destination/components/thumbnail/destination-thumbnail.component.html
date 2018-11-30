@@ -1,6 +1,8 @@
-<section class="card" [routerLink]="['/destination', destination?.id]">
-	<h2>{{destination.name}}</h2>
-	<p>
-		{{destination.description}}
-	</p>
-</section>
+<div class="card mod-clickable" [routerLink]="['/destination', destination?.id]">
+	<section class="card-content">
+		<h2>{{destination.name}}</h2>
+		<p>
+			{{destination.description}}
+		</p>
+	</section>
+</div>
