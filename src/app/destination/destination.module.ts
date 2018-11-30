@@ -1,13 +1,22 @@
 import { NgModule } from '@angular/core';
 import { DestinationService } from './destination.service';
-// import { HttpClientModule } from '@angular/common/http';
+import { DestinationRoutingModule } from './destination.router';
+import { DestinationComponent } from './destination.component';
+import { DestinationThumbnailComponent } from './components';
 
 @NgModule({
 	imports: [
-		// HttpClientModule,
+		DestinationRoutingModule,
 	],
 	providers: [
 		DestinationService,
+	],
+	declarations: [
+		DestinationComponent,
+		DestinationThumbnailComponent,
+	],
+	exports: [
+		DestinationThumbnailComponent,
 	]
 })
 export class DestinationModule {}
