@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { Observable, of, merge } from 'rxjs';
 import { debounceTime, switchMap, catchError } from 'rxjs/operators';
 import { IDestination, DestinationService } from '../destination';
 
@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
 		protected destinationService: DestinationService,
 	) {}
 	ngOnInit() {
-		this.destinations$ = this.clueCtrl.valueChanges
+		this.destinations$ = merge(
+			of(''),
+			this.clueCtrl.valueChanges
+		)
 		.pipe(
 			debounceTime(250),
 			switchMap(clue => this.destinationService.searchDestinations(clue)),
