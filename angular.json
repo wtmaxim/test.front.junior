@@ -27,7 +27,7 @@
 						],
 						"styles": [
 							"node_modules/@lucca-front/scss/dist/lucca-front.css",
-							"src/styles.css"
+							"src/styles.scss"
 						],
 						"scripts": []
 					},
