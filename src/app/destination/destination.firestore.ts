@@ -18,8 +18,8 @@ export class DestinationFirestore {
 		);
 
 	}
-	getByName(name: string) {
-		return this.db.collection<IDestination>('/destinations', ref => ref.where('name', '==', name).limit(1)).valueChanges().pipe(
+	getById(id: string) {
+		return this.db.collection<IDestination>('/destinations', ref => ref.where('id', '==', id).limit(1)).valueChanges().pipe(
 			map(results => results[0]),
 			take(1),
 		);

@@ -9,7 +9,7 @@ export class DestinationService {
 	searchDestinations(clue: string = ''): Observable<IDestination[]> {
 		return this.fs.search(clue);
 	}
-	getDestinationByName(name: string): Observable<IDestination> {
-		return this.fs.getByName(name);
+	getDestinationById(id: string): Observable<IDestination> {
+		return this.fs.getById(id);
 	}
 }
