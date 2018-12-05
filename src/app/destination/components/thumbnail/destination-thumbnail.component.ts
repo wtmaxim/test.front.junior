@@ -8,4 +8,7 @@ import { IDestination } from '../../destination.model';
 })
 export class DestinationThumbnailComponent {
 	@Input() destination: IDestination;
+	get thumbnailImg() {
+		return `assets/img/${this.destination.img || 'placeholder'}/thumbnail.jpg`;
+	}
 }
