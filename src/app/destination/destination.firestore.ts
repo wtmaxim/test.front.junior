@@ -7,7 +7,7 @@ import { map, take } from 'rxjs/operators';
 export class DestinationFirestore {
 	constructor(protected db: AngularFirestore) {}
 	getAll() {
-		return this.db.collection<IDestination>('/destinations').valueChanges().pipe(take(1));
+		return this.db.collection<IDestination>('/destinations', ref => ref.orderBy('name')).valueChanges().pipe(take(1));
 	}
 
 	getById(id: string) {
