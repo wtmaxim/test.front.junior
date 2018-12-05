@@ -27,7 +27,7 @@ describe('DestinationFirestore', () => {
 		scheduler = new TestScheduler((actual, expected) => {
 			expect(actual).toEqual(expected);
 		});
-	})
+	});
 	beforeEach(inject([AngularFirestore, DestinationFirestore], (_fs: AngularFirestore, _dfs: DestinationFirestore) => {
 		dfs = _dfs;
 		fs = _fs;
@@ -35,7 +35,7 @@ describe('DestinationFirestore', () => {
 	it('should be created', () => {
 		expect(dfs).toBeTruthy();
 	});
-	
+
 	describe('getAll', () => {
 		it('should call db.collection', () => {
 			spyOn(fs, 'collection').and.callThrough();
@@ -45,7 +45,7 @@ describe('DestinationFirestore', () => {
 		it('should only return the first value emited', () => {
 			scheduler.run(helpers => {
 				const { cold, expectObservable } = helpers;
-				
+
 				const collection$ = cold('-p-e--p|', {e: [], p: [paris]});
 				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
 				const all$ = dfs.getAll();
@@ -62,7 +62,7 @@ describe('DestinationFirestore', () => {
 		it('should only return the first value emited', () => {
 			scheduler.run(helpers => {
 				const { cold, expectObservable } = helpers;
-				
+
 				const collection$ = cold('-p-e--p|', {e: [], p: [paris]});
 				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
 				const byId$ = dfs.getById(paris.id).pipe(mapTo(true));
@@ -72,7 +72,7 @@ describe('DestinationFirestore', () => {
 		it('should only return the righ value', () => {
 			scheduler.run(helpers => {
 				const { cold, expectObservable } = helpers;
-				
+
 				const collection$ = cold('-a-e--p|', {a: [paris, marseille], e: [], p: [paris]});
 				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
 				const byId$ = dfs.getById(paris.id);

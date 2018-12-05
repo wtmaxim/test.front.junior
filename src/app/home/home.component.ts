@@ -24,6 +24,6 @@ export class HomeComponent implements OnInit {
 			debounceTime(250),
 			switchMap(clue => this.destinationService.searchDestinations(clue)),
 			catchError(err => of([])),
-		)
+		);
 	}
 }

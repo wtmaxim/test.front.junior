@@ -28,7 +28,7 @@ describe('DestinationService', () => {
 		scheduler = new TestScheduler((actual, expected) => {
 			expect(actual).toEqual(expected);
 		});
-	})
+	});
 	beforeEach(inject([DestinationFirestore, DestinationService], (_dfs: DestinationFirestore, _service: DestinationService) => {
 		dfs = _dfs;
 		service = _service;
@@ -36,7 +36,7 @@ describe('DestinationService', () => {
 	it('should be created', () => {
 		expect(service).toBeTruthy();
 	});
-	
+
 	describe('searchDestinations', () => {
 		it('should call dfs.getall', () => {
 			spyOn(dfs, 'getAll').and.callThrough();
@@ -50,7 +50,7 @@ describe('DestinationService', () => {
 				spyOn(dfs, 'getAll').and.returnValue(cold('-a', { a: [paris, marseille] }));
 				const search$ = service.searchDestinations();
 
-				expectObservable(search$).toBe('-a', { a: [paris, marseille] })
+				expectObservable(search$).toBe('-a', { a: [paris, marseille] });
 			});
 		});
 		it('should filter the results', () => {
@@ -60,7 +60,7 @@ describe('DestinationService', () => {
 				spyOn(dfs, 'getAll').and.returnValue(cold('-a', { a: [paris, marseille] }));
 				const search$ = service.searchDestinations('par');
 
-				expectObservable(search$).toBe('-p', { p: [paris] })
+				expectObservable(search$).toBe('-p', { p: [paris] });
 			});
 		});
 	});
@@ -77,7 +77,7 @@ describe('DestinationService', () => {
 				spyOn(dfs, 'getById').and.returnValue(cold('-p', { p: paris }));
 				const getById$ = service.getDestinationById(paris.id);
 
-				expectObservable(getById$).toBe('-p', { p: paris })
+				expectObservable(getById$).toBe('-p', { p: paris });
 			});
 		});
 	});
