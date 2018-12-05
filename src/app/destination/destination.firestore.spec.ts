@@ -4,7 +4,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { MockFirestoreModule, MockFsCollection } from './firestore.mock.spec';
 import { TestScheduler } from 'rxjs/testing';
 
-import { paris } from './destination.mock.spec';
+import { paris, marseille } from './destination.mock.spec';
+import { mapTo } from 'rxjs/operators';
 
 describe('DestinationFirestore', () => {
 	let dfs: DestinationFirestore;
@@ -31,9 +32,9 @@ describe('DestinationFirestore', () => {
 		dfs = _dfs;
 		fs = _fs;
 	}));
-	it('should be created', inject([DestinationFirestore], (_dfs: DestinationFirestore) => {
-		expect(_dfs).toBeTruthy();
-	}));
+	it('should be created', () => {
+		expect(dfs).toBeTruthy();
+	});
 	
 	describe('getAll', () => {
 		it('should call db.collection', () => {
@@ -43,7 +44,7 @@ describe('DestinationFirestore', () => {
 		});
 		it('should only return the first value emited', () => {
 			scheduler.run(helpers => {
-				const { cold, expectObservable, expectSubscriptions } = helpers;
+				const { cold, expectObservable } = helpers;
 				
 				const collection$ = cold('-p-e--p|', {e: [], p: [paris]});
 				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
@@ -51,12 +52,32 @@ describe('DestinationFirestore', () => {
 				expectObservable(all$).toBe('-(p|)', {e: [], p: [paris]});
 			});
 		});
-		
-	});
-	describe('search', () => {
-		
 	});
 	describe('getById', () => {
-		
+		it('should call db.collection', () => {
+			spyOn(fs, 'collection').and.callThrough();
+			dfs.getById(paris.id);
+			expect(fs.collection).toHaveBeenCalled();
+		});
+		it('should only return the first value emited', () => {
+			scheduler.run(helpers => {
+				const { cold, expectObservable } = helpers;
+				
+				const collection$ = cold('-p-e--p|', {e: [], p: [paris]});
+				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
+				const byId$ = dfs.getById(paris.id).pipe(mapTo(true));
+				expectObservable(byId$).toBe('-(t|)', {t: true});
+			});
+		});
+		it('should only return the righ value', () => {
+			scheduler.run(helpers => {
+				const { cold, expectObservable } = helpers;
+				
+				const collection$ = cold('-a-e--p|', {a: [paris, marseille], e: [], p: [paris]});
+				spyOn(fs, 'collection').and.returnValue(new MockFsCollection(collection$));
+				const byId$ = dfs.getById(paris.id);
+				expectObservable(byId$).toBe('-(p|)', {p: paris});
+			});
+		});
 	});
 });

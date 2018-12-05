@@ -28,9 +28,7 @@ describe('mock firestore module', () => {
 			imports: [
 				MockFirestoreModule,
 			],
-			providers: [
-
-			]
+			providers: []
 		});
 	});
 
