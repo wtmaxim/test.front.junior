@@ -1,4 +1,5 @@
 export interface IDestination {
+	id: string;
 	name: string;
 	description: string;
 	country: string;
