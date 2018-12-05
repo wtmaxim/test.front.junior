@@ -6,4 +6,5 @@ export interface IDestination {
 	priceRange: string;
 	rating: number;
 	tags: string[];
+	img: string;
 }
