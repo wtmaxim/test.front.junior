@@ -22,26 +22,28 @@
 	padding-bottom: 0;
 	position: relative;
 	z-index: 1;
-	* {
-		color : #FFF;
-	}
 	.grid {
 		align-items: center;
 	}
 }
 
+.card-content {
+	color: #666;
+}
 .presentation-section {
 	position: relative;
 	z-index: 1;
 	.breadcrumb {
 		margin-left: -12px;
+		color: #fff;
 	}
-	.card-content {
-		color: #666;
+	h1, h2 {
+		color: #fff;
 	}
 }
 
 .infos-section {
+	color: #fff;
 	background-color: rgba(111, 205, 210, 0.616);
 	height: 100vh;
 	display: flex;
