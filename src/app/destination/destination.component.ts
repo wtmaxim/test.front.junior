@@ -9,6 +9,7 @@ import { IDestination } from './destination.model';
 })
 export class DestinationComponent implements OnInit {
 	destination: IDestination;
+	get bgImg() { return `url('assets/img/${this.destination.img || 'placeholder'}/bg.jpg')`; }
 	constructor(
 		protected route: ActivatedRoute,
 	) {}

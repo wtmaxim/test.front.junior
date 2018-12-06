@@ -1,4 +1,4 @@
-<main class="main-content" [style.backgroundImage]="'url(assets/img/paris/bg.jpg)'">
+<main class="main-content" [style.backgroundImage]="bgImg">
 	<div class="container">
 		<div class="grid">
 				<section class="grid-md8 grid-lg7 presentation-section">
@@ -32,11 +32,7 @@
 								</li>
 							</ul>
 						</div>
-						<div class="gallery">
-							<img src="assets/img/paris/1.jpg" alt="">
-							<img src="assets/img/paris/2.jpg" alt="">
-							<img src="assets/img/paris/3.jpg" alt="">
-						</div>
+						<app-destination-gallery [destination]="destination"></app-destination-gallery>
 					</section>
 		</div>
 	</div>

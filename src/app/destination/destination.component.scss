@@ -2,7 +2,7 @@
 	position: relative;
 	height: 100vh;
 	overflow-x: hidden;
-	background-image: url('assets/img/paris/bg.jpg');
+	background-image: url('assets/img/placeholder/bg.jpg');
 	background-repeat: no-repeat;
 	background-position: top center;
 	background-size: cover;
@@ -70,19 +70,6 @@
 			}
 		}
 	}
-
-	.gallery {
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: flex-end;
-		align-items: center;
-		transform: translateX(50%);
-		img {
-			height: 200px;
-			margin-left: 1rem;
-			box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
-		}
-	}
 }
 
 @media only screen and (max-width: 768px) {
@@ -92,7 +79,7 @@
 	.infos-section {
 		height: auto;
 
-		.gallery {
+		app-destination-gallery {
 			transform: none;
 		}
 	}
