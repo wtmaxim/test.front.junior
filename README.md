@@ -33,7 +33,7 @@ I want you to enrich the page displaying a destination details, with a list of a
 
 You have a list of activities available in firebase under the path `/activities`
 
-A moqup of what is expected is available here
+A moqup of what is expected is available [here](https://github.com/LuccaSA/test.front.junior/blob/master/moqup-large.png) or [here](https://github.com/LuccaSA/test.front.junior/blob/master/moqup-small.png)
 
 ## Q&A
 
@@ -76,7 +76,7 @@ Je veux que vous enrichissiez cet ecran avec une liste d'activites touristiques 
 
 une liste d'activites est diponible dans la base firebase sous le chemin `/activities`
 
-une maquette du type de rendu est disponible ici
+une maquette du type de rendu est disponible [ici](https://github.com/LuccaSA/test.front.junior/blob/master/moqup-large.png) ou [là](https://github.com/LuccaSA/test.front.junior/blob/master/moqup-small.png)
 
 ## FaQ
 
