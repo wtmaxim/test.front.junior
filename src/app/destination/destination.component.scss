@@ -9,7 +9,7 @@
 	&::before {
 		display: block;
 		content: '';
-		position: absolute;
+		position: fixed;
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -17,34 +17,45 @@
 		background-color: rgba(0, 0, 0, .5);
 	}
 }
-.container {
+.main-content > .container {
 	margin-top: 0;
 	padding-bottom: 0;
 	position: relative;
 	z-index: 1;
-	* {
-		color : #FFF;
-	}
-	.grid {
+	> .grid {
 		align-items: center;
+		position: relative;
+		min-height: 100vh;
 	}
 }
 
+.card-content {
+	color: #666;
+}
 .presentation-section {
 	position: relative;
 	z-index: 1;
 	.breadcrumb {
 		margin-left: -12px;
+		.breadcrumb-item {
+			color: #fff;
+		}
 	}
-	.card-content {
-		color: #666;
+	h1, h2 {
+		color: #fff;
 	}
 }
 
 .infos-section {
+	color: #fff;
 	background-color: rgba(111, 205, 210, 0.616);
-	height: 100vh;
+	min-height: 100vh;
+	height: 100%;
 	display: flex;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
 	flex-direction: column;
 	justify-content: center;
 	.infos {
