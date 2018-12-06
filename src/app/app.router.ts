@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeModule } from './home';
 import { DestinationModule } from './destination';
+import { environment } from '../environments/environment';
 
 const routes = [
 	{ path: 'home', loadChildren: () => HomeModule },
@@ -12,7 +13,7 @@ const routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes),
+		RouterModule.forRoot(routes, { useHash: environment.useHash }),
 	],
 	exports: [
 		RouterModule,

@@ -1,5 +1,6 @@
 export const environment = {
 	production: true,
+	useHash: true,
 	firebase: {
 		apiKey: "AIzaSyBcHS3cmq-kK3b6SKSjUayO85lLwWOred0",
 		authDomain: "test-front-lucca.firebaseapp.com",
