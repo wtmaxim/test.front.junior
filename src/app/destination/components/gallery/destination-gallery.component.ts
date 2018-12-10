@@ -8,7 +8,4 @@ import { IDestination } from '../../destination.model';
 })
 export class DestinationGalleryComponent {
 	@Input() destination: IDestination;
-	imgSrc(id) {
-		return `assets/img/${this.destination.img || 'placeholder'}/${id}.jpg`;
-	}
 }

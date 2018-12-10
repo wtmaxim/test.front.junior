@@ -1,3 +1,1 @@
-<img [src]="imgSrc(1)" alt="">
-<img [src]="imgSrc(2)" alt="">
-<img [src]="imgSrc(3)" alt="">
+<img *ngFor="let image of destination.gallery" [src]="image" alt="">
