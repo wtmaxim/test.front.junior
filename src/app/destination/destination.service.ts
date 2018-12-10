@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { IDestination } from './destination.model';
 import { DestinationFirestore } from './destination.firestore';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DestinationService {
@@ -11,10 +12,10 @@ export class DestinationService {
 		// return this.fs.getAll().pipe(
 		// 	map(destinations => destinations.filter(d => d.name.toLowerCase().startsWith(clue.toLowerCase()))),
 		// );
-		return this.http.get<IDestination[]>(`//localhost:3000/api/destinations?name=like,${clue}`);
+		return this.http.get<IDestination[]>(`${environment.serverUrl}/api/destinations?name=like,${clue}`);
 	}
 	getDestinationById(id: string): Observable<IDestination> {
 		// return this.fs.getById(id);
-		return this.http.get<IDestination>(`//localhost:3000/api/destinations/${id}`);
+		return this.http.get<IDestination>(`${environment.serverUrl}/api/destinations/${id}`);
 	}
 }
