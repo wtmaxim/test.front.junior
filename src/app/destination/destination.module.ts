@@ -7,12 +7,14 @@ import { DestinationResolver } from './destination.resolver';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { DestinationFirestore } from './destination.firestore';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	imports: [
 		DestinationRoutingModule,
 		AngularFirestoreModule,
 		CommonModule,
+		HttpClientModule,
 	],
 	providers: [
 		DestinationFirestore,
