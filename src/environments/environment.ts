@@ -12,7 +12,8 @@ export const environment = {
 		projectId: 'test-front-lucca',
 		storageBucket: 'test-front-lucca.appspot.com',
 		messagingSenderId: '1008850527496'
-	}
+	},
+	serverUrl: '//localhost:3000',
 };
 
 /*
