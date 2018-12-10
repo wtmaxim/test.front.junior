@@ -5,7 +5,6 @@ import { DestinationComponent } from './destination.component';
 import { DestinationThumbnailComponent, DestinationGalleryComponent } from './components';
 import { DestinationResolver } from './destination.resolver';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { DestinationFirestore } from './destination.firestore';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 		HttpClientModule,
 	],
 	providers: [
-		DestinationFirestore,
 		DestinationService,
 		DestinationResolver,
 	],
