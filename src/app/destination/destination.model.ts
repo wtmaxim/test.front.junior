@@ -7,4 +7,7 @@ export interface IDestination {
 	rating: number;
 	tags: string[];
 	img: string;
+	bg: string;
+	thumbnail: string;
+	gallery: string[];
 }
