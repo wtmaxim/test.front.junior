@@ -4,7 +4,6 @@ import { DestinationRoutingModule } from './destination.router';
 import { DestinationComponent } from './destination.component';
 import { DestinationThumbnailComponent, DestinationGalleryComponent } from './components';
 import { DestinationResolver } from './destination.resolver';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from '../api';
@@ -12,7 +11,6 @@ import { ApiModule } from '../api';
 @NgModule({
 	imports: [
 		DestinationRoutingModule,
-		AngularFirestoreModule,
 		CommonModule,
 		HttpClientModule,
 		ApiModule,
