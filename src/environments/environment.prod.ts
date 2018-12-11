@@ -9,5 +9,5 @@ export const environment = {
 		storageBucket: 'test-front-lucca.appspot.com',
 		messagingSenderId: '1008850527496'
 	},
-	serverUrl: '//tourism.ilucca-dev.net',
+	serverUrl: '//tourism.lucienbertin.com',
 };
