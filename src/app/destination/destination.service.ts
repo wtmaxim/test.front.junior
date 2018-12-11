@@ -8,9 +8,14 @@ import { environment } from '../../environments/environment';
 export class DestinationService {
 	constructor(protected http: HttpClient) {}
 	searchDestinations(clue: string = ''): Observable<IDestination[]> {
-		return this.http.get<IDestination[]>(`${environment.serverUrl}/api/destinations?name=like,${clue}`);
+		const params = {} as any;
+		params.orderBy = 'name';
+		if (!!clue) {
+			params['name$like'] = clue;
+		}
+		return this.http.get<IDestination[]>(`${environment.serverUrl}/api/destinations`, { params: params });
 	}
 	getDestinationById(id: string): Observable<IDestination> {
-		return this.http.get<IDestination>(`${environment.serverUrl}/api/destinations/${id}`);
+		return this.http.get<IDestination>(`${environment.serverUrl}/api/destination/${id}`);
 	}
 }
