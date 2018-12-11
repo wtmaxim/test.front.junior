@@ -3,11 +3,12 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { paris, marseille } from './destination.mock.spec';
 import { DestinationService } from './destination.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('DestinationService', () => {
 	let service: DestinationService;
 	let scheduler: TestScheduler;
+	let httpCtrl: HttpTestingController;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
@@ -17,6 +18,7 @@ describe('DestinationService', () => {
 				DestinationService,
 			]
 		});
+		httpCtrl = TestBed.get(HttpTestingController);
 	});
 	beforeEach(() => {
 		// we use the marble synthax for testing our observables
@@ -59,21 +61,25 @@ describe('DestinationService', () => {
 	// 		});
 	// 	});
 	// });
-	// describe('getDestinationById', () => {
-	// 	it('should call dfs.getbyid', () => {
-	// 		spyOn(dfs, 'getById').and.callThrough();
-	// 		service.getDestinationById(paris.id);
-	// 		expect(dfs.getById).toHaveBeenCalled();
-	// 	});
-	// 	it('should call dfs.getbyid and return it unscathed', () => {
-	// 		scheduler.run(helpers => {
-	// 			const { cold, expectObservable } = helpers;
+	describe('getDestinationById', () => {
+		it('should call http.get', () => {
+			const id = '12';
 
-	// 			spyOn(dfs, 'getById').and.returnValue(cold('-p', { p: paris }));
-	// 			const getById$ = service.getDestinationById(paris.id);
+			service.getDestinationById(id).subscribe(d => d);
 
-	// 			expectObservable(getById$).toBe('-p', { p: paris });
-	// 		});
-	// 	});
-	// });
+			const req = httpCtrl.expectOne(`/api/destination/${id}`);
+			expect(req.request.method).toEqual('GET');
+			req.flush(paris);
+		});
+		it('should return the result unscathed', () => {
+			const id = '12';
+
+			service.getDestinationById(id).subscribe(d => {
+				expect(d).toBe(paris);
+			});
+
+			const req = httpCtrl.expectOne(`/api/destination/${id}`);
+			req.flush(paris);
+		});
+	});
 });
