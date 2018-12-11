@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDestination } from './destination.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DestinationService {
@@ -13,9 +12,9 @@ export class DestinationService {
 		if (!!clue) {
 			params['name$like'] = clue;
 		}
-		return this.http.get<IDestination[]>(`${environment.serverUrl}/api/destinations`, { params: params });
+		return this.http.get<IDestination[]>(`/api/destinations`, { params: params });
 	}
 	getDestinationById(id: string): Observable<IDestination> {
-		return this.http.get<IDestination>(`${environment.serverUrl}/api/destination/${id}`);
+		return this.http.get<IDestination>(`/api/destination/${id}`);
 	}
 }
