@@ -1,36 +1,24 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { DestinationFirestore } from './destination.firestore';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { MockFirestoreModule } from './firestore.mock.spec';
-import { TestScheduler } from 'rxjs/testing';
 
 import { paris, marseille } from './destination.mock.spec';
 import { DestinationService } from './destination.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('DestinationService', () => {
 	let service: DestinationService;
-	let dfs: DestinationFirestore;
-	let scheduler: TestScheduler;
+	let httpCtrl: HttpTestingController;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				MockFirestoreModule,
+				HttpClientTestingModule,
 			],
 			providers: [
-				DestinationFirestore,
 				DestinationService,
 			]
 		});
+		httpCtrl = TestBed.get(HttpTestingController);
 	});
-	beforeEach(() => {
-		// we use the marble synthax for testing our observables
-		// https://github.com/ReactiveX/rxjs/blob/master/doc/marble-testing.md
-		scheduler = new TestScheduler((actual, expected) => {
-			expect(actual).toEqual(expected);
-		});
-	});
-	beforeEach(inject([DestinationFirestore, DestinationService], (_dfs: DestinationFirestore, _service: DestinationService) => {
-		dfs = _dfs;
+	beforeEach(inject([DestinationService], (_service: DestinationService) => {
 		service = _service;
 	}));
 	it('should be created', () => {
@@ -38,47 +26,60 @@ describe('DestinationService', () => {
 	});
 
 	describe('searchDestinations', () => {
-		it('should call dfs.getall', () => {
-			spyOn(dfs, 'getAll').and.callThrough();
-			service.searchDestinations();
-			expect(dfs.getAll).toHaveBeenCalled();
+		it('should call http.get', () => {
+			service.searchDestinations().subscribe(d => d);
+
+			const req = httpCtrl.expectOne(r => r.url === '/api/destinations');
+			expect(req.request.method).toEqual('GET');
+			req.flush([]);
 		});
-		it('should return the results when clue=""', () => {
-			scheduler.run(helpers => {
-				const { cold, expectObservable } = helpers;
+		it('should call wtih just orderby if clue = ""', () => {
+			service.searchDestinations().subscribe(d => d);
 
-				spyOn(dfs, 'getAll').and.returnValue(cold('-a', { a: [paris, marseille] }));
-				const search$ = service.searchDestinations();
+			const req = httpCtrl.expectOne(r => r.url === '/api/destinations');
+			const params = req.request.params;
+			expect(params.toString()).toEqual('orderBy=name');
+			req.flush([]);
+		});
+		it('should call wtih filter on name if clue !=""', () => {
+			const clue = 'asd';
+			service.searchDestinations(clue).subscribe(d => d);
 
-				expectObservable(search$).toBe('-a', { a: [paris, marseille] });
+			const req = httpCtrl.expectOne(r => r.url === '/api/destinations');
+			const params = req.request.params;
+			expect(params.toString()).toEqual(`orderBy=name&name$like=${clue}`);
+			req.flush([]);
+		});
+		it('should return the http result unscathed', () => {
+			const clue = 'asd';
+			const results = [paris, marseille];
+			service.searchDestinations(clue).subscribe(d => {
+				expect(d).toBe(results);
 			});
+			const req = httpCtrl.expectOne(r => r.url === '/api/destinations');
+			req.flush(results);
 		});
-		it('should filter the results', () => {
-			scheduler.run(helpers => {
-				const { cold, expectObservable } = helpers;
 
-				spyOn(dfs, 'getAll').and.returnValue(cold('-a', { a: [paris, marseille] }));
-				const search$ = service.searchDestinations('par');
-
-				expectObservable(search$).toBe('-p', { p: [paris] });
-			});
-		});
 	});
 	describe('getDestinationById', () => {
-		it('should call dfs.getbyid', () => {
-			spyOn(dfs, 'getById').and.callThrough();
-			service.getDestinationById(paris.id);
-			expect(dfs.getById).toHaveBeenCalled();
+		it('should call http.get', () => {
+			const id = '12';
+
+			service.getDestinationById(id).subscribe(d => d);
+
+			const req = httpCtrl.expectOne(`/api/destination/${id}`);
+			expect(req.request.method).toEqual('GET');
+			req.flush(paris);
 		});
-		it('should call dfs.getbyid and return it unscathed', () => {
-			scheduler.run(helpers => {
-				const { cold, expectObservable } = helpers;
+		it('should return the result unscathed', () => {
+			const id = '12';
 
-				spyOn(dfs, 'getById').and.returnValue(cold('-p', { p: paris }));
-				const getById$ = service.getDestinationById(paris.id);
-
-				expectObservable(getById$).toBe('-p', { p: paris });
+			service.getDestinationById(id).subscribe(d => {
+				expect(d).toBe(paris);
 			});
+
+			const req = httpCtrl.expectOne(`/api/destination/${id}`);
+			req.flush(paris);
 		});
 	});
 });
