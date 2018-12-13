@@ -27,14 +27,22 @@ Submit your work via a PR to this repo
 
 This exercise uses a standard angular 7 stack, which is the stack used at Lucca today. If you're not familiar with the framework there are a lot of tutorials available on the web. Here is a [link](https://angular.io/tutorial) to the tutorail provided by the angular team. For this exercise you dont need to master aspects about _routing_ or _http_.
 
-This exercise also use _lucca-front_ as a css framework. lucca-front is our in-house open source framework for building angular applications. You can find documentation of the features at this [url](https://luccasa.github.io/design-system#/) and the source code is available [here](https://github.com/LuccaSA/lucca-front)
+This exercise also use _lucca-front_ as a css framework. lucca-front is our in-house open source framework for building angular applications. You can find documentation of the features at this [url](https://luccasa.github.io/design-system#/) and the source code is available [here](https://github.com/LuccaSA/lucca-front).
 
-This exercise also uses [firebase](https://firebase.google.com/) for its server side db. The db is in read only mode, no need for authentication.
+For our backend we use a light nodejs RESTful api server. It's full documentation and source code is available [here](https://github.com/LuccaSA/tourism.server). A live version is available under http://tourism.lucienbertin.com. You can clone the repo and work with a local version of the server or choose to use the one available online. All instructions on how to build/deploy the server locally is available on its repository, to route api calls to your local server, see the file [environment.ts](https://github.com/LuccaSA/test.front.junior/blob/master/src/environments/environment.ts#L8).
 
-> You'll remark it doesn't use it at its full potential, and there are some strange syntaxes going on.
-> That's because at Lucca we dont use firebase ; we use REST APIs. As a result i tried to mimic the comportment of a REST API via firebase.
-> That's why you'll see the `take(1)` used, breaking the binding between firebase and our app, because i want to mimic a `http.get` and i don't really care about the fact that a change in the db could appear instantanously in the app.
-> The use of firebase is just temproary, newer version will use a REST server.
+Some quick rules on how to query it
+- there are 2 main apis: [/api/destinations](http://tourism.lucienbertin.com/api/destinations) and [/api/activities](http://tourism.lucienbertin.com/api/activities)
+- [/api/destinations](http://tourism.lucienbertin.com/api/destinations) will give you a collection of destinations, [/api/destination/:id](http://tourism.lucienbertin.com/api/destination/1) will give you the destination with id = `:id`. idem for /api/activities and /api/activity/:id
+- you can filter the results you want by adding parameters to the url, the synthax is
+	- propertyName=value1,value2,value3... - will give you only the items where propertyName equals one of the values
+	- ex: [/api/destinations?rating=3,4](http://tourism.lucienbertin.com/api/destinations?rating=3,4) gives you the destinations rated 3 or 4 stars
+	- propertyName$like=value1,value2,value3... - will give you the items where propertyName contains one of the values
+	- ex: [/api/destinations?name$like=b,c,d](http://tourism.lucienbertin.com/api/destinations?name$like=b,c,d) gives you the destinations with the letter b, c or d in it
+- you can add a sort order or paging, the synthax is
+	- paging=offset,count
+	- orderBy=propertyName,sortOrder - sortOrder is optional and degfault to ascending, use `desc` for a descending order
+	- ex: [/api/destinations?orderBy=rating&paging=5,5](http://tourism.lucienbertin.com/api/destinations?orderBy=ratings&paging=5,5) gives you the destinations 6 to 10, ordered by descending rating
 
 ## Q&A
 
@@ -73,12 +81,20 @@ Cet exercice utilise une stack angular 7 classique, c'est la stack utilisée che
 
 Cet exercice utilise aussi _lucca-front_ comme framework css. Lucca-front est notre librairie open source interne de framework UI/UX pour application angular. Une documentation des composants css est disponible [ici](https://luccasa.github.io/design-system#/) et le code source est [là](https://github.com/LuccaSA/lucca-front)
 
-Cet exercice utilise aussi [firebase](https://firebase.google.com/) comme base de donnée. La base est en lecture seule open bar, pas besoin d'authentification.
+Pour la partie serveur, cet exercice utilise un serveur nodejs light d'api REST. Sa documentation complète est disponible [ici](https://github.com/LuccaSA/tourism.server). Une version online est disponible sous http://tourism.lucienbertin.com. Vous pouvez choisir d'utiliser la version online, ou monter un serveur localement, toutes les instructions pour builder/deployer le serveur en local sont disponibles dans son repository. Pour rerouter les appels apis vers votre version locale, allez voir le fichier [environment.ts](https://github.com/LuccaSA/test.front.junior/blob/master/src/environments/environment.ts#L8).
 
-> Vous remarquerez que l'utilisation faite de firebase est tres marginale et pas vraiment dans les standards de firebase, ce qui fait apparaitre des syntaxes bizare.
-> Ceci est du au fait que, chez Lucca, on n'utilise pas firebase, mais plutot des apis REST. afin de mieux coller au code lucca, j'ai essayé de reproduire le comportement d'une api REST via une base firebase.
-> C'est pour ca par exemple la presence de `take(1)` dans les appels en db, pour ressembler a un appel `http.get`.
-> L'utilisation de firebase est temporaire, une prochaine version de cet exercice viendra avec son propre server http REST
+Quelques règles rapides pour interroger l'api
+- il y a 2 apis principales : [/api/destinations](http://tourism.lucienbertin.com/api/destinations) et [/api/activities](http://tourism.lucienbertin.com/api/activities)
+- [/api/destinations](http://tourism.lucienbertin.com/api/destinations) retournera une collection de destinations, [/api/destination/:id](http://tourism.lucienbertin.com/api/destination/1) retournera la destination d'id `:id`. idem pour /api/activities et /api/activity/:id
+- il est possible d'appliquer un ou plusieur filtres a la requete, la synthaxe est alors
+	- propertyName=value1,value2,value3... - retournera les items pour lesquels `propertyName` vaut l'une des valeurs
+	- ex: [/api/destinations?rating=3,4](http://tourism.lucienbertin.com/api/destinations?rating=3,4) retourne les destinations notées 3 ou 4
+	- propertyName$like=value1,value2,value3... - retournera les items pour lesquels `propertyName` _contient_ l'une des valeurs
+	- ex: [/api/destinations?name$like=b,c,d](http://tourism.lucienbertin.com/api/destinations?name$like=b,c,d) retournera les destinations qui ont la lettre b, c ou d dans leur nom
+- vous pouvez ordonner et paginer les resultats
+	- paging=offset,count
+	- orderBy=propertyName,sortOrder - sortOrder est opttionnel est est ascendant par defaut, utilisez `desc` pour un ordre descendant
+	- ex: [/api/destinations?orderBy=rating&paging=5,5](http://tourism.lucienbertin.com/api/destinations?orderBy=ratings&paging=5,5) retourne les destinations 6 a 10, ordonnees par note descendante
 
 ## FaQ
 
