@@ -1,3 +1,6 @@
+### Resultat
+![](https://github.com/wtmaxim/test.front.junior/blob/master/readme_exemple.PNG)
+
 french available after the break
 
 # Technical test for Junior developpers
